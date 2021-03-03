@@ -1,3 +1,5 @@
+import Utility from './utility.firebase'
+
 export default class Post {
 
     // Create Post
@@ -16,22 +18,53 @@ export default class Post {
                 console.log(`Id del post => ${refDoc.id}`)
             })
             .catch(error => {
-                console.log(`Error creado el post ${error}`)
+                console.log(`Error creado el post fit ${error}`)
             })
     }
 
 
     // Get Post
-    getPosts() {
+    getPosts(containerPosts) {
         firebase.firestore()
             .collection('posts')
             .onSnapshot(querySnapshot => {
-                console.log(`los posts: ${querySnapshot}`)
+                console.log(querySnapshot)
+                containerPosts.innerHTML = '';
+                querySnapshot.forEach(post => {
+                    // debugger
+                    let postHTML = this.getPostTemplate(
+                        post.data().uid,
+                        post.data().title,
+                        Utility.getDate(post.data().date.toDate()),
+                        post.data().description,
+                        post.data().postLink
+                    )
+                    containerPosts.innerHTML += postHTML;
+                })
             })
     }
 
-    
-    uploadFiles (file, uidUser, uploadBar) {
+    getPostTemplate(uid, title, date, description, linkFile) {
+        return `
+            <div data-id="${uid}" class="w-full p-8 border-2 border-gray-300 shadow-sm rounded-lg cursor-pointer flex justify-between items-start flex-col">  
+                <div>
+                    <h1 class="md:text-3xl xs:text-2xl font-medium my-2">${title}</h1>
+                    <p class="text-base text-gray-700 my-3">${date}</p>
+                    <p class="md:text-xl xs:text-lg md:hidden xs:block">${description}</p>
+                </div>
+                <div class="mt-5 w-full flex justify-center">
+                    <a href="${linkFile}" class="md:text-base border xs:text-sm border-black py-1 px-2 rounded-full" target="_blank">Ver Comprobante</a>
+                </div>
+            </div>
+        `;
+    }
+
+    viewPost() {
+        console.log('click')
+    }
+
+
+    uploadFiles(file, uidUser, uploadBar) {
         const refStorage = firebase.storage().ref(`filesPosts/${uidUser}/${file.name}`)
         const post = refStorage.put(file)
 
@@ -58,5 +91,7 @@ export default class Post {
             }
         )
     }
+
+
 
 }

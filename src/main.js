@@ -11,15 +11,15 @@ window.addEventListener('hashchange', () => {
 
 
 //img
-const homeImg = document.getElementById('home');
-const addImg = document.getElementById('add');
-const notificationImg = document.getElementById('notification');
-const logoutImg = document.getElementById('out');
+// const homeImg = document.getElementById('home');
+// const addImg = document.getElementById('add');
+// const notificationImg = document.getElementById('notification');
+// const logoutImg = document.getElementById('out');
 
-homeImg.setAttribute('src', 'src/resources/home.svg')
-addImg.setAttribute('src', 'src/resources/plus.svg')
-notificationImg.setAttribute('src', 'src/resources/bell.svg')
-logoutImg.setAttribute('src', 'src/resources/logout.svg')
+// homeImg.setAttribute('src', 'src/resources/home.svg')
+// addImg.setAttribute('src', 'src/resources/plus.svg')
+// notificationImg.setAttribute('src', 'src/resources/bell.svg')
+// logoutImg.setAttribute('src', 'src/resources/logout.svg')
 
 
 // navigation auth
@@ -36,7 +36,7 @@ firebase.auth().onAuthStateChanged((user) => {
         if (user.photoURL) {
             userAvatar.setAttribute('src', user.photoURL);
         } else {
-            userAvatar.setAttribute('src', 'src/resources/profile-user.png')
+            userAvatar.setAttribute('src', 'https://firebasestorage.googleapis.com/v0/b/supersociedadeselkindussan.appspot.com/o/filesPosts%2FUnGSW1qHgUetWbC6aTAYJRmSm9o2%2Fprofile-user.svg?alt=media&token=10105958-ac90-4071-9a08-db40462a7dc5')
         }
     } else {
         navigationPublic.style.display = 'flex'

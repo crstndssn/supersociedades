@@ -62,11 +62,9 @@ export default class Authentication {
                 let template = this.errorModal(error.message)
                 modalContainer.innerHTML += template;
                 setTimeout(() => {
-                    console.log('eee')
                     modalContainer.innerHTML = ``;
                 }, 3000)
             })
-            
     }
 
     // Login Google

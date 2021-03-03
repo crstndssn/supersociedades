@@ -15,7 +15,9 @@ export default () => {
         e.preventDefault();
         const email = loginForm['login-email'].value;
         const password = loginForm['login-password'].value;
-        console.log(email, password, modalContainer)
+ 
+
+        console.log(email, password, modalContainer);
         auth.authEmailPassword(email, password, modalContainer);
         // window.location.href = '#/tasks';
 
@@ -25,24 +27,24 @@ export default () => {
             }
         })
        
-        console.log(viewTasks)
+        // console.log(viewTasks)
 
-        var modalContainerTasks = document.createElement('div');
-        modalContainerTasks.innerHTML += viewTasks;
-        modalContainerTasks.querySelector('.modal-container')
-        console.log(modalContainerTasks)
+        // var modalContainerTasks = document.createElement('div');
+        // modalContainerTasks.innerHTML += viewTasks;
+        // modalContainerTasks.querySelector('.modal-container')
+        // console.log(modalContainerTasks)
 
         // let messageWecome = 'Welcome'
 
-        console.log(Modal.successModal())
+        // console.log(Modal.successModal())
 
-        debugger
+        // debugger
 
         // let messageWecomeTemplate = Modal.successModal(messageWecome)
 
-        modalContainerTasks.innerHTML += messageWecomeTemplate
+        // modalContainerTasks.innerHTML += messageWecomeTemplate
         
-        debugger
+        // debugger
     });
 
     const loginGoogle = divElement.querySelector('#login-google')

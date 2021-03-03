@@ -57,6 +57,7 @@ export default () => {
 
         postForm.reset();
         uploadBar.style.width = '0%';
+        window.location.href = '#/posts'
 
     })
 
@@ -69,7 +70,6 @@ export default () => {
         console.log(uploadBar)
         post.uploadFiles(file, user.uid, uploadBar)
         inputFileBtn.value = null
-        
     })
 
     uploadBar.style.width = '0%';
