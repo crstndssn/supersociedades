@@ -30,17 +30,17 @@ export default class Post {
             })
     }
 
-
-    uploadFiles (file, uidUser, uidPost) {
-        const refStorage = firebase.storage().ref(`imgPosts/${uidUser}/${uidPost}/${file.name}`)
+    
+    uploadFiles (file, uidUser, uploadBar) {
+        const refStorage = firebase.storage().ref(`filesPosts/${uidUser}/${file.name}`)
         const post = refStorage.put(file)
 
         post.on(
             'state_changed',
             snapshot => {
-                const porcentaje = snapshot.bytesTrasferred / snapshot.totalBytes * 100;
+                const porcentaje = snapshot.bytesTransferred / snapshot.totalBytes * 100;
                 console.log(porcentaje)
-                document.querySelector('.upload-file').style.width = `${porcentaje}%`
+                uploadBar.style.width = `${porcentaje}%`
             },
             err => {
                 console.log(err)

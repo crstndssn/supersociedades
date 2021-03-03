@@ -24,8 +24,11 @@ module.exports = {
                 loader: 'html-loader'
             },
             {
-                test: /\.(png|jpe?g|gif|svg|ico)$/,
+                test: /\.(jpe?g|png|gif|svg)$/i, 
                 loader: 'file-loader',
+                options: {
+                  name: './src/resources'
+                }
             }
         ]
     },
