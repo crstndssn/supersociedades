@@ -6,8 +6,10 @@ const router = (route) => {
     content.innerHTML = '';
     switch(route) {
         case '': 
-            return content.appendChild(pages.login());
+            return content.appendChild(pages.home());
         case '#/': 
+            return content.appendChild(pages.home());
+        case '#/login': 
             return content.appendChild(pages.login());
         case '#/signup': 
             return content.appendChild(pages.signup());

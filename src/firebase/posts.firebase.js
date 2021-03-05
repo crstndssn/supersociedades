@@ -27,6 +27,8 @@ export default class Post {
     getPosts(containerPosts) {
         firebase.firestore()
             .collection('posts')
+            .orderBy('date', 'desc')
+            .where('autor', '==', 'edussan@itsoluciones.net')
             .onSnapshot(querySnapshot => {
                 console.log(querySnapshot)
                 containerPosts.innerHTML = '';
@@ -46,11 +48,11 @@ export default class Post {
 
     getPostTemplate(uid, title, date, description, linkFile) {
         return `
-            <div data-id="${uid}" class="w-full p-8 border-2 border-gray-300 shadow-sm rounded-lg cursor-pointer flex justify-between items-start flex-col">  
+            <div data-id="${uid}" class="w-full p-8 border border-gray-300 shadow-sm rounded-lg cursor-pointer flex justify-between items-start flex-col">  
                 <div>
-                    <h1 class="md:text-3xl xs:text-2xl font-medium my-2">${title}</h1>
-                    <p class="text-base text-gray-700 my-3">${date}</p>
-                    <p class="md:text-xl xs:text-lg md:hidden xs:block">${description}</p>
+                    <h1 class="md:text-3xl xs:text-2xl font-medium my-1">${title}</h1>
+                    <p class="text-sm text-gray-600 my-2">Subido el ${date}</p>
+                    <p class="md:text-xl xs:text-lg">${description}</p>
                 </div>
                 <div class="mt-5 w-full flex justify-center">
                     <a href="${linkFile}" class="md:text-base border xs:text-sm border-black py-1 px-2 rounded-full" target="_blank">Ver Comprobante</a>

@@ -24,7 +24,6 @@ export default () => {
             location.reload();
         }
         
-
     });
 
     return divElement;

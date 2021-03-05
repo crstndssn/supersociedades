@@ -44,6 +44,7 @@ export default class Authentication {
             })
     }
 
+
     // Login
     authEmailPassword(email, password, modalContainer) {
         firebase.auth()
@@ -67,6 +68,7 @@ export default class Authentication {
             })
     }
 
+
     // Login Google
     authGoogle() {
         const provider = new firebase.auth.GoogleAuthProvider();
@@ -85,8 +87,8 @@ export default class Authentication {
             })
     }
 
+    
     // Templates
-
     successModal(message) {
         return `
         <div class="bg-green-50 rounded-lg p-5 my-2 shadow"">

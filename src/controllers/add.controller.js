@@ -12,15 +12,17 @@ export default () => {
     // You're an user?
     firebase.auth().onAuthStateChanged((user) => {
 
-        if (user == null) {
+        if (user.email == 'edussan@itsoluciones.net') {
+
+            userSession = user;
+
+        } else {
 
             alert('No tienes permisos');
             window.location.href = "#/"
             return location.reload()
-
-        } else {
-            userSession = user;
         }
+        
     })
     
 
