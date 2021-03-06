@@ -1,24 +1,26 @@
 export default class Authentication {
-    
+
     // Sign Up
-    signUpEmailAndPassword(name, email, password) {
+    signUpEmailAndPassword(name, email, password, modalContainer) {
         firebase.auth()
             .createUserWithEmailAndPassword(email, password)
             .then((result) => {
-                console.log(result.message)
+                console.log(result)
                 result.user.updateProfile({
                     displayName: name
                 })
-                modalContainer.innerHTML = ``;
-                let template = this.successModal(result.message)
-                modalContainer.innerHTML = template;
+                const message = 'Se ha registrado con éxito';
+                let template = this.successModal(message)
+                modalContainer.innerHTML += template;
                 setTimeout(() => {
                     modalContainer.innerHTML = ``;
                 }, 3000)
+                this.saveUser(result.user.uid, result.user.email)
             })
             .catch((error) => {
-                modalContainer.innerHtml = ``;
+                modalContainer.innerHtml = ``;  
                 let template = this.errorModal(error.message)
+                console.log(error.message)
                 modalContainer.innerHTML += template;
                 setTimeout(() => {
                     modalContainer.innerHTML = ``;
@@ -33,6 +35,7 @@ export default class Authentication {
             .signInWithPopup(provider)
             .then(result => {
                 console.log(result)
+                this.saveUser(result.user.uid, result.user.email)
             })
             .catch((error) => {
                 modalContainer.innerHtml = ``;
@@ -87,7 +90,26 @@ export default class Authentication {
             })
     }
 
-    
+
+
+    saveUser(uid, email) {
+        return firebase.firestore()
+            .collection('users')
+            .add({
+                uid: uid,
+                email: email
+            })
+            .then(refDoc => {
+                console.log(`Usuario registrado ${refDoc.id}`)
+            })
+            .catch(error => {
+                console.log(`Error creando usuario ${error}`)
+            })
+
+    }
+
+
+
     // Templates
     successModal(message) {
         return `

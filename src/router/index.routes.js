@@ -17,6 +17,8 @@ const router = (route) => {
             return content.appendChild(pages.add());
         case '#/posts': 
             return content.appendChild(pages.posts());
+        case '#/notifications': 
+            return content.appendChild(pages.notification());
     }
 }
 

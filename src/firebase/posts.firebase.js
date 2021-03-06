@@ -24,7 +24,7 @@ export default class Post {
 
 
     // Get Post
-    getPosts(containerPosts) {
+    getPosts(containerPosts, emailUser) {
         firebase.firestore()
             .collection('posts')
             .orderBy('date', 'desc')
@@ -32,21 +32,45 @@ export default class Post {
             .onSnapshot(querySnapshot => {
                 console.log(querySnapshot)
                 containerPosts.innerHTML = '';
-                querySnapshot.forEach(post => {
-                    // debugger
-                    let postHTML = this.getPostTemplate(
-                        post.data().uid,
-                        post.data().title,
-                        Utility.getDate(post.data().date.toDate()),
-                        post.data().description,
-                        post.data().postLink
-                    )
-                    containerPosts.innerHTML += postHTML;
-                })
+                if (emailUser == 'edussan@itsoluciones.net') {
+                    querySnapshot.forEach(post => {
+                        let postHTML = this.getPostTemplateAdmin(
+                            post.id,
+                            post.data().title,
+                            Utility.getDate(post.data().date.toDate()),
+                            post.data().description,
+                            post.data().postLink,
+                            post.data().autor
+                        )
+                        containerPosts.innerHTML += postHTML;
+                        const deletePostBtn = containerPosts.querySelectorAll('.delete-post')
+                        deletePostBtn.forEach(btn => {
+                            btn.addEventListener('click', (e) => {
+                                console.log(btn.dataset.id)
+                                this.deletePost(btn.dataset.id)
+                            })
+                        })
+                    })
+                } else {
+                    querySnapshot.forEach(post => {
+
+                        let postHTML = this.getPostTemplatePublic(
+                            post.data().uid,
+                            post.data().title,
+                            Utility.getDate(post.data().date.toDate()),
+                            post.data().description,
+                            post.data().postLink,
+                            post.data().autor
+                        )
+                        containerPosts.innerHTML += postHTML;
+
+                    })
+                }
+
             })
     }
 
-    getPostTemplate(uid, title, date, description, linkFile) {
+    getPostTemplateAdmin(uid, title, date, description, linkFile) {
         return `
             <div data-id="${uid}" class="w-full p-8 border border-gray-300 shadow-sm rounded-lg cursor-pointer flex justify-between items-start flex-col">  
                 <div>
@@ -54,15 +78,33 @@ export default class Post {
                     <p class="text-sm text-gray-600 my-2">Subido el ${date}</p>
                     <p class="md:text-xl xs:text-lg">${description}</p>
                 </div>
-                <div class="mt-5 w-full flex justify-center">
-                    <a href="${linkFile}" class="md:text-base border xs:text-sm border-black py-1 px-2 rounded-full" target="_blank">Ver Comprobante</a>
+                <div class="flex justify-center items-center w-full mt-5">
+                        <a data-id="${uid}" class="delete-post md:text-base text-red-500 border xs:text-sm border-red-500 py-1 px-2 mx-1 rounded-full" target="_blank">Borrar</a>
+                        <a href="${linkFile}" class="md:text-base border xs:text-sm border-black py-1 px-2 mx-1 rounded-full" target="_blank">Descargar</a>
                 </div>
             </div>
         `;
     }
 
-    viewPost() {
-        console.log('click')
+    getPostTemplatePublic(uid, title, date, description, linkFile) {
+        return `
+            <div data-id="${uid}" class="w-full p-8 border border-gray-300 shadow-sm rounded-lg cursor-pointer flex justify-between items-start flex-col">  
+                <div>
+                    <h1 class="md:text-3xl xs:text-2xl font-medium my-1">${title}</h1>
+                    <p class="text-sm text-gray-600 my-2">Subido el ${date}</p>
+                    <p class="md:text-xl xs:text-lg">${description}</p>
+                </div>
+                <div class="flex justify-center items-center w-full mt-5">
+                        <a href="${linkFile}" class="md:text-base border xs:text-sm border-black py-1 px-2 mx-1 rounded-full" target="_blank">Descargar</a>
+                </div>
+            </div>
+        `;
+    }
+
+    deletePost(id) {
+        firebase.firestore()
+            .collection('posts')
+            .doc(id).delete()
     }
 
 
