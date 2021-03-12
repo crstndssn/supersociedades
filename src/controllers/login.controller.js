@@ -48,19 +48,19 @@ export default () => {
         
     });
 
-    const loginGoogle = divElement.querySelector('#login-google')
-    loginGoogle.addEventListener('click', (e) => {
-        e.preventDefault();
-        auth.authGoogle(modalContainer);
-        console.log('loged google')
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                window.location.href = '#/posts'
-            } else {
-                console.log('hubo un problema en el logeo')
-            }
-        })
-    })
+    // const loginGoogle = divElement.querySelector('#login-google')
+    // loginGoogle.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     auth.authGoogle(modalContainer);
+    //     console.log('loged google')
+    //     firebase.auth().onAuthStateChanged((user) => {
+    //         if (user) {
+    //             window.location.href = '#/posts'
+    //         } else {
+    //             console.log('hubo un problema en el logeo')
+    //         }
+    //     })
+    // })
 
     return divElement;
 

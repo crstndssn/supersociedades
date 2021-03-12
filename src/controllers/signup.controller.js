@@ -23,25 +23,24 @@ export default () => {
             modal.errorModal('Tu contraseña debe tener minimo 6 carácteres', modalContainer)
         } else {
             auth.signUpEmailAndPassword(name, email, password, modalContainer);
-            window.location.href = "#/posts";
-            location.reload();
+            signupForm.reset();
         }
 
     });
 
-    const loginGoogle = divElement.querySelector('#signup-google')
-    loginGoogle.addEventListener('click', (e) => {
-        e.preventDefault();
-        auth.authGoogle(modalContainer);
-        console.log('signup google')
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                window.location.href = '#/posts'
-            } else {
-                console.log('hubo un problema en el logeo')
-            }
-        })
-    })
+    // const loginGoogle = divElement.querySelector('#signup-google')
+    // loginGoogle.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     auth.authGoogle(modalContainer);
+    //     console.log('signup google')
+    //     firebase.auth().onAuthStateChanged((user) => {
+    //         if (user) {
+    //             window.location.href = '#/posts'
+    //         } else {
+    //             console.log('hubo un problema en el logeo')
+    //         }
+    //     })
+    // })
 
 
     return divElement;

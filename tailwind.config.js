@@ -166,8 +166,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        'Poppins', 
-        'sans-serif'
+        'DM Sans'
       ],
       serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
       mono: [
