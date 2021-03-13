@@ -12,7 +12,7 @@ export default () => {
     // You're an user?
     firebase.auth().onAuthStateChanged((user) => {
 
-        if (user.email == 'edussan@itsoluciones.net') {
+        if (user.email == 'administracion@vsp.com.co') {
 
             userSession = user;
 

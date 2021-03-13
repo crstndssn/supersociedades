@@ -26,13 +26,10 @@ export default class Notification {
 
     getPostTemplate(uid, email) {
         return `
-            <div class="w-full p-8 border border-gray-300 shadow-sm rounded-lg cursor-pointer flex justify-between items-start flex-col">  
+            <div class="w-full p-8 border border-gray-300 shadow-sm rounded-lg cursor-pointer flex justify-between items-start flex-col overflow-auto">  
                 <div>
-                    <h1 class="md:text-3xl xs:text-2xl font-medium my-1">${email}</h1>
+                    <h1 class="md:text-3xl xs:text-2xl font-medium my-1 mr-3">${email}</h1>
                 </div>
-                <!--<div class="flex justify-center items-center w-full mt-5">
-                    <a data-id="${uid}" class="delete-user md:text-base text-red-500 border xs:text-sm border-red-500 py-1 px-2 mx-1 rounded-full" target="_blank">Borrar</a>
-                </div>-->
             </div>
         `;
     }

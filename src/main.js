@@ -43,7 +43,7 @@ firebase.auth().onAuthStateChanged((user) => {
         // navigation
         const onlyAdminAdd = document.querySelector('.only-admin-add')
         const onlyAdminNotification = document.querySelector('.only-admin-notification')
-        if (user.email == 'edussan@itsoluciones.net') {
+        if (user.email == 'administracion@vsp.com.co') {
             onlyAdminAdd.style.display = 'flex'
             onlyAdminNotification.style.display = 'flex'
         } else {

@@ -28,11 +28,11 @@ export default class Post {
         firebase.firestore()
             .collection('posts')
             .orderBy('date', 'desc')
-            .where('autor', '==', 'edussan@itsoluciones.net')
+            .where('autor', '==', 'administracion@vsp.com.co')
             .onSnapshot(querySnapshot => {
                 console.log(querySnapshot)
                 containerPosts.innerHTML = '';
-                if (emailUser == 'edussan@itsoluciones.net') {
+                if (emailUser == 'administracion@vsp.com.co') {
                     querySnapshot.forEach(post => {
                         let postHTML = this.getPostTemplateAdmin(
                             post.id,
