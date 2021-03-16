@@ -91,6 +91,12 @@ export default class Authentication {
     }
 
 
+    // Reset password
+    resetPassword(email) {
+        firebase.auth()
+            .sendPasswordResetEmail(email)
+    }
+
 
     saveUser(uid, email) {
         return firebase.firestore()
@@ -107,6 +113,8 @@ export default class Authentication {
             })
 
     }
+
+    
 
 
 

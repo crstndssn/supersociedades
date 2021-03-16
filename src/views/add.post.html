@@ -5,13 +5,15 @@
             class="w-full bg-gray-100 p-4 rounded-md text-4xl font-medium text-gray-800 focus:outline-none" type="text"
             placeholder="Title" autocomplete="off">
         <textarea id="description-post"
-            class="mt-6 bg-gray-100 p-4 rounded-md text-xl font-base text-gray-800 w-full min-h-25 focus:outline-none"
+            class="mt-6 bg-gray-100 p-4 rounded-md text-xl font-base text-gray-800 w-full h-32 focus:outline-none"
             type="text" placeholder="Description"></textarea>
+
+        <input id="date-post" type="date" class="p-2 border border-black rounded my-5">
         <div class="progress-panel my-2 flex items-center md:flex-row xs:flex-col">
             <label class="cursor-pointer border border-black rounded-lg p-2 text-lg my-2" for="input-file">Subir archivo</label>
             <input class="file" type="file" type="upload" name="upload image" id="input-file">
             <div class="w-32 h-3 bg-gray-300 rounded-full mx-5">
-                <div class="upload-file h-3 bg-green-600 mt-3 rounded-full"></div>
+                <div class="upload-file h-3 bg-green-600 rounded-full"></div>
             </div>
         </div>
         <div class="flex justify-center items-center w-full">

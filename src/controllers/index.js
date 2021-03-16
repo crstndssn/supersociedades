@@ -4,6 +4,7 @@ import Signup from './signup.controller';
 import Add from './add.controller';
 import Posts from './posts.controller';
 import Notification from './notification.controller';
+import Reset from './reset.controller';
 
 const pages = {
     home: Home,
@@ -11,7 +12,8 @@ const pages = {
     signup: Signup,
     add: Add,
     posts: Posts,
-    notification: Notification
+    notification: Notification,
+    reset: Reset
 }
 
 export {pages}

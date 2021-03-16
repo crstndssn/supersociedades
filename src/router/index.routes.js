@@ -19,6 +19,8 @@ const router = (route) => {
             return content.appendChild(pages.posts());
         case '#/notifications': 
             return content.appendChild(pages.notification());
+        case '#/reset-password': 
+            return content.appendChild(pages.reset());
     }
 }
 

@@ -37,10 +37,13 @@ export default () => {
 
         const title = postForm['title-post'].value;
         const description = postForm['description-post'].value;
+        const dateForm = postForm['date-post'].value;
         const postLink = sessionStorage.getItem('imgNewPost') == 'null'
             ? null
             : sessionStorage.getItem('imgNewPost')
-        console.log(title, description);
+            
+        console.log(title, description, dateForm);
+
         
         console.log(userSession.email)
         post.createPost(
@@ -48,6 +51,7 @@ export default () => {
             userSession.email,
             title,
             description,
+            dateForm,
             postLink
         )
         .then(resp => {
